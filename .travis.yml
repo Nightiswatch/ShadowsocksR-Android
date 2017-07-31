@@ -1,5 +1,8 @@
 language: android
 
+os:
+  - osx
+
 jdk:
   - oraclejdk8
 
@@ -32,5 +35,12 @@ android:
         - extra-google-m2repository
 
 install:
-    - sudo apt-get -y install ant 
-    - bash travis-ci/setup.sh
+    - sudo apt-get -y install ant sbt
+    - sudo brew install android-ndk android-sdk
+    - export ANDROID_HOME=/usr/local/Cellar/android-sdk/$version
+    - export ANDROID_NDK_HOME=/usr/local/Cellar/android-ndk/$version
+    - echo "y" | android update sdk --filter tools,platform-tools,build-tools-23.0.2,android-23,extra-google-m2repository --no-ui -a
+    - echo "y" | android update sdk --filter extra-android-m2repository --no-ui --no-https -a
+    - git submodule update --init
+    - ./build.sh
+    - sbt clean android:package-release
