@@ -32,20 +32,4 @@ android:
         - extra-google-m2repository
 
 install:
-    - >
-      if [ ! -d "$ANDROID_NDK_HOME" ]; then
-          mkdir -p $ANDROID_NDK_HOME;
-          pushd $HOME/.android;
-          export ARCH=`uname -m`;
-          wget -q http://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-${ARCH}.zip;
-          unzip -q android-ndk-${NDK_VERSION}-linux-${ARCH}.zip;
-          popd;
-      fi
-    - >
-      if [ ! -f "$SBTPATH/sbt" ]; then
-          pushd $SBTPATH;
-          wget -q https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt;
-          chmod a+x sbt;
-          popd;
-      fi
     - bash travis-ci/setup.sh
