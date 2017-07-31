@@ -49,5 +49,3 @@ install:
           popd;
       fi
     - bash travis-ci/setup.sh
-script:
-- $SBTPATH/sbt go-build android:package
