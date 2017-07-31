@@ -32,8 +32,7 @@ android:
         - extra-google-m2repository
 
 install:
-    - sudo apt-get -y install ant brew
-    - sudo brew install android-ndk android-sdk
+    - sudo apt-get -y install ant
     - export ANDROID_HOME=/usr/local/Cellar/android-sdk/$version
     - export ANDROID_NDK_HOME=/usr/local/Cellar/android-ndk/$version
     - echo "y" | android update sdk --filter tools,platform-tools,build-tools-23.0.2,android-23,extra-google-m2repository --no-ui -a
