@@ -32,7 +32,7 @@ android:
         - extra-google-m2repository
 
 install:
-    - sudo apt-get -y install ant 
+    - sudo apt-get -y install ant brew
     - sudo brew install android-ndk android-sdk
     - export ANDROID_HOME=/usr/local/Cellar/android-sdk/$version
     - export ANDROID_NDK_HOME=/usr/local/Cellar/android-ndk/$version
