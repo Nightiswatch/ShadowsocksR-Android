@@ -32,4 +32,5 @@ android:
         - extra-google-m2repository
 
 install:
+    - sudo apt-get -y install ant 
     - bash travis-ci/setup.sh
