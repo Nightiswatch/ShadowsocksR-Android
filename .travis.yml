@@ -1,8 +1,5 @@
 language: android
 
-os:
-  - osx
-
 jdk:
   - oraclejdk8
 
