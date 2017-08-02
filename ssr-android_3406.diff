@@ -1,0 +1,62 @@
+diff --git a/src/main/AndroidManifest.xml b/src/main/AndroidManifest.xml
+index f05cc6fb..8fc7b8d6 100644
+--- a/src/main/AndroidManifest.xml
++++ b/src/main/AndroidManifest.xml
+@@ -1,7 +1,7 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:tools="http://schemas.android.com/tools" package="com.github.shadowsocks"
+-          android:versionCode="315"
+-          android:versionName="3.4.0.5">
++          android:versionCode="316"
++          android:versionName="3.4.0.6">
+ 
+     <uses-permission android:name="android.permission.INTERNET"/>
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+diff --git a/src/main/jni/shadowsocks-libev b/src/main/jni/shadowsocks-libev
+index f713aa98..fbba180f 160000
+--- a/src/main/jni/shadowsocks-libev
++++ b/src/main/jni/shadowsocks-libev
+@@ -1 +1 @@
+-Subproject commit f713aa981169d35ff9483b295d1209c35117d70c
++Subproject commit fbba180fe0d04ce85192bc1b206d83532d3fc723
+diff --git a/src/main/scala/com/github/shadowsocks/ProfileManagerActivity.scala b/src/main/scala/com/github/shadowsocks/ProfileManagerActivity.scala
+index 6548507c..26b82d8e 100644
+--- a/src/main/scala/com/github/shadowsocks/ProfileManagerActivity.scala
++++ b/src/main/scala/com/github/shadowsocks/ProfileManagerActivity.scala
+@@ -752,9 +752,15 @@ final class ProfileManagerActivity extends AppCompatActivity with OnMenuItemClic
+                         limit_num = response_string.split("\\n")(0).split("MAX=")(1).replaceAll("\\D+","").toInt
+                       }
+                       var profiles_ssr = Parser.findAll_ssr(response_string)
+-                      profiles_ssr = scala.util.Random.shuffle(profiles_ssr)
++
++                      val profiles_temp = Parser.findAll_ssr(response_string)
++                      val profiles_count = profiles_temp.length
++                      if (limit_num != -1 && limit_num != profiles_count) {
++                        profiles_ssr = scala.util.Random.shuffle(profiles_ssr)
++                      }
++
+                       profiles_ssr.foreach((profile: Profile) => {
+-                        if (encounter_num < limit_num && limit_num != -1 || limit_num == -1) {
++                        if ((encounter_num < limit_num && limit_num != -1) || limit_num == -1) {
+                           val result = app.profileManager.createProfile_sub(profile)
+                           if (result != 0) {
+                             delete_profiles = delete_profiles.filter(_.id != result)
+diff --git a/src/main/scala/com/github/shadowsocks/job/SSRSubUpdateJob.scala b/src/main/scala/com/github/shadowsocks/job/SSRSubUpdateJob.scala
+index 38d1ee21..d63e665f 100644
+--- a/src/main/scala/com/github/shadowsocks/job/SSRSubUpdateJob.scala
++++ b/src/main/scala/com/github/shadowsocks/job/SSRSubUpdateJob.scala
+@@ -72,7 +72,13 @@ class SSRSubUpdateJob() extends Job {
+                     limit_num = response_string.split("\\n")(0).split("MAX=")(1).replaceAll("\\D+","").toInt
+                   }
+                   var profiles_ssr = Parser.findAll_ssr(response_string)
+-                  profiles_ssr = scala.util.Random.shuffle(profiles_ssr)
++
++                  val profiles_temp = Parser.findAll_ssr(response_string)
++                  val profiles_count = profiles_temp.length
++                  if (limit_num != -1 && limit_num != profiles_count) {
++                    profiles_ssr = scala.util.Random.shuffle(profiles_ssr)
++                  }
++
+                   profiles_ssr.foreach((profile: Profile) => {
+                     if (encounter_num < limit_num && limit_num != -1 || limit_num == -1) {
+                       val result_id = app.profileManager.createProfile_sub(profile)
