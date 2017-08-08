@@ -8,8 +8,8 @@ export PATH=${ANDROID_NDK_HOME}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-t
 if [ ! -d "$ANDROID_HOME" ]; then
     mkdir -p $ANDROID_HOME
     pushd $HOME/.android
-    wget -q http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
-    tar xf android-sdk_r24.4.1-linux.tgz
+    wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+    unzip -q sdk-tools-linux-3859397.zip
     popd
 fi
 
