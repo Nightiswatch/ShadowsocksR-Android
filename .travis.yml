@@ -44,4 +44,5 @@ install:
     - cp local.properties.travis local.properties
 
 script:
+    - git submodule update --init --recursive
     - sbt native-build android:package-release
