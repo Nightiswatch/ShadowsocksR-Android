@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ARCH=`uname -m`
-export ANDROID_NDK_HOME=$HOME/.android/android-ndk-r11c
+export ANDROID_NDK_HOME=$HOME/.android/android-ndk-r11
 export ANDROID_HOME=$HOME/.android/android-sdk-linux
 export PATH=${ANDROID_NDK_HOME}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${PATH}
 
@@ -16,8 +16,8 @@ fi
 if [ ! -d "$ANDROID_NDK_HOME" ]; then
     mkdir -p $ANDROID_NDK_HOME
     pushd $HOME/.android
-    wget -q http://dl.google.com/android/repository/android-ndk-r11c-linux-${ARCH}.zip
-    unzip -q android-ndk-r11c-linux-${ARCH}.zip
+    wget -q http://dl.google.com/android/repository/android-ndk-r11-linux-${ARCH}.zip
+    unzip -q android-ndk-r11-linux-${ARCH}.zip
     popd
 fi
 
