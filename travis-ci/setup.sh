@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ARCH=`uname -m`
-export ANDROID_NDK_HOME=$HOME/.android/android-ndk-r12b
+export ANDROID_NDK_HOME=$HOME/.android/android-ndk-r11c
 export ANDROID_HOME=$HOME/.android/android-sdk-linux
 export PATH=${ANDROID_NDK_HOME}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${PATH}
 
