@@ -46,4 +46,4 @@ install:
 script:
     - git submodule update --init
     - git submodule update --init --recursive
-    - sbt native-build android:package-release
+    - sbt native-build clean android:package-release
