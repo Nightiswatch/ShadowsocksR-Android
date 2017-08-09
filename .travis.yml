@@ -49,4 +49,5 @@ install:
           popd;
       fi
 script:
+    - git submodule update --init
     - $SBTPATH/sbt go-build android:package
