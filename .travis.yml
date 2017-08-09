@@ -50,4 +50,4 @@ install:
       fi
 script:
     - git submodule update --init
-    - $SBTPATH/sbt native-build android:package
+    - $SBTPATH/sbt native-build clean android:package-release
