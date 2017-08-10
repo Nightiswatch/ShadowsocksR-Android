@@ -6,7 +6,7 @@ A [shadowsocksR](https://github.com/breakwa11/shadowsocks-rss/) client for Andro
 
 ### CI STATUS
 
-[![Build Status](https://travis-ci.org/Readour/ShadowsocksR-Android.svg?branch=master)](https://travis-ci.org/Readour/ShadowsocksR-Android)
+[![Build Status](https://travis-ci.org/Readour/ShadowsocksR-Android.svg?branch=debug)](https://travis-ci.org/Readour/ShadowsocksR-Android)
 ### PREREQUISITES
 
 * JDK 1.8
